@@ -1,0 +1,263 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Perpustakaan Digital",
+    "version": "1.0.0",
+    "description": "Sebuah aplikasi perpustakaan untuk pengembangan literasi"
+  },
+  "tags": [
+    {
+      "name": "Books",
+      "description": "Books resources"
+    }
+  ],
+  "paths": {
+    "/books": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "List all available Books",
+        "description": "Show all Books",
+        "produces": [
+          "aplication/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "ubermensch"
+                  },
+                  "author": {
+                    "type": "string",
+                    "example": "Friedrich Nietzsche"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Add new collection book",
+        "description": "Create new",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Article object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "meditations"
+                },
+                "author": {
+                  "type": "integer",
+                  "example": "Marcus Aurellius"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully create new books",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "meditations"
+                },
+                "author": {
+                  "type": "integer",
+                  "example": "Marcus Aurellius"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to create new article",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Failed to create new books"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Find article by ID",
+        "description": "return a single Books",
+        "security": [
+          {
+            "Token": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookId",
+            "description": "ID of books to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "ubermensch"
+                },
+                "author": {
+                  "type": "string",
+                  "example": "Friedrich Nietzsche"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Updated user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "name",
+            "description": "Updated user object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "ubermensch"
+                },
+                "author": {
+                  "type": "string",
+                  "example": "Friedrich Nietzsche"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Deletes a book",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "description": "book id to delete",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Token": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  }
+}

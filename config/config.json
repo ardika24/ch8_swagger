@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "dika",
+    "password": "sandidb",
+    "database": "chapter_8_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "dika",
+    "password": "sandidb",
+    "database": "chapter_8_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "dika",
+    "password": "sandidb",
+    "database": "chapter_8_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
